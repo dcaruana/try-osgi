@@ -54,6 +54,10 @@ public class FelixService implements InitializingBean
             // auto deploy bundles
             AutoProcessor.process(null, this.felix.getBundleContext());
             
+            // register bundles
+            String userDir = System.getProperty("user.dir");
+            this.felix.getBundleContext().installBundle("file:" + userDir + "/bundles/org.apache.felix.bundlerepository-2.0.4.jar");
+            
             // register services
             Hashtable<String, String> props = new Hashtable<String, String>();
             props.put("Language", "English");
@@ -64,7 +68,7 @@ public class FelixService implements InitializingBean
         }
         catch (Exception e)
         {
-            System.err.println("Felix failed to initialise:" + e);
+            System.err.println("Felix failed to initialise: " + e);
         }
     }
     
