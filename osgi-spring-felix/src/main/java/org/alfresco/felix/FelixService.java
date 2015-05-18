@@ -45,6 +45,7 @@ public class FelixService implements InitializingBean
             
             config.put(FelixConstants.SYSTEMBUNDLE_ACTIVATORS_PROP, list);
             //config.put("felix.log.level", "2");
+            config.put("felix.auto.deploy.action", "install,start");
             
             // create framework
             FrameworkFactory factory = new FrameworkFactory();
@@ -52,7 +53,7 @@ public class FelixService implements InitializingBean
             this.felix.init();
             
             // auto deploy bundles
-            AutoProcessor.process(null, this.felix.getBundleContext());
+            AutoProcessor.process(config, this.felix.getBundleContext());
             
             // register bundles
             String userDir = System.getProperty("user.dir");
