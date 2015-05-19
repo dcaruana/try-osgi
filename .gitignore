@@ -6,3 +6,4 @@ felix.sh
 target/
 workspace/
 osgi-spring-felix/felix-cache
+osgi-dependent-jars/felix-cache

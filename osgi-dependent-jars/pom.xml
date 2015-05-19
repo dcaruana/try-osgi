@@ -3,10 +3,10 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>caruana.osgi</groupId>
-    <artifactId>osgi-simple-provider</artifactId>
+    <artifactId>osgi-dependent-jars</artifactId>
     <packaging>bundle</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>osgi-simple-provider</name>
+    <name>osgi-dependent-jars</name>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -14,15 +14,34 @@
 
     <dependencies>
         <dependency>
-            <groupId>org.apache.felix</groupId>
+            <groupId>org.osgi</groupId>
             <artifactId>org.osgi.core</artifactId>
-            <version>1.4.0</version>
+            <version>5.0.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-math3</artifactId>
+            <version>3.2</version>
         </dependency>
 
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <version>3.8.1</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.framework</artifactId>
+            <version>5.0.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.felix</groupId>
+            <artifactId>org.apache.felix.main</artifactId>
+            <version>5.0.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -40,12 +59,17 @@
 
             <plugin>
                 <groupId>org.apache.felix</groupId>
-                <version>2.5.3</version>
                 <artifactId>maven-bundle-plugin</artifactId>
+                <version>2.5.3</version>
                 <extensions>true</extensions>
                 <configuration>
                     <instructions>
-                        <Bundle-Activator>caruana.osgi.provider.impl.ProviderActivator</Bundle-Activator>
+                        <Export-Package>caruana.osgi.jars.api</Export-Package>
+                        <Bundle-Activator>caruana.osgi.jars.impl.JarsActivator</Bundle-Activator>
+
+                        <Embed-Dependency>!org.osgi.*,*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Transitive>true</Embed-Transitive>
+                        <Embed-Directory>lib</Embed-Directory>
                     </instructions>
                 </configuration>
             </plugin>
