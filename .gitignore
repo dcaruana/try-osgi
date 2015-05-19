@@ -4,3 +4,5 @@ felix.sh
 .project
 .settings/
 target/
+workspace/
+osgi-spring-felix/felix-cache
