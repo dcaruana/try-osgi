@@ -54,9 +54,8 @@
                         <!--  <Import-Package>org.osgi.framework</Import-Package> -->
                         <Bundle-Activator>caruana.osgi.provider.impl.ProviderActivator</Bundle-Activator>
 
-                        <!--  <Embed-Dependency>!org.osgi.*,!commons-logging,!commons-codec,*;scope=compile|runtime</Embed-Dependency> -->
-                        <!--  <Embed-Dependency>!org.osgi.*,*;scope=compile|runtime</Embed-Dependency> -->
-                        <Embed-Dependency>*;scope=compile|runtime</Embed-Dependency>
+                        <Embed-Dependency>!org.osgi.*,!commons-logging,!commons-codec,*;scope=compile|runtime</Embed-Dependency>
+                        <!-- <Embed-Dependency>!org.osgi.*,*;scope=compile|runtime</Embed-Dependency> -->
                         <Embed-Transitive>true</Embed-Transitive>
                         <Embed-Directory>lib</Embed-Directory>
                     </instructions>
